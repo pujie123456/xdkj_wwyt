@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jib.wwyt.mapper.CzkLsjlMapper">
+    <resultMap id="BaseResultMap" type="com.jib.wwyt.model.CzkLsjl">
+        <result column="id" jdbcType="INTEGER" property="id" />
+        <result column="devicenum" jdbcType="VARCHAR" property="devicenum" />
+        <result column="sendtime" jdbcType="TIMESTAMP" property="sendtime" />
+        <result column="xCross" jdbcType="VARCHAR" property="xCross" />
+        <result column="yCross" jdbcType="VARCHAR" property="yCross" />
+        <result column="velocity" jdbcType="VARCHAR" property="velocity" />
+        <result column="direction" jdbcType="VARCHAR" property="direction" />
+        <result column="horizontalfactor" jdbcType="VARCHAR" property="horizontalfactor" />
+        <result column="alarm" jdbcType="VARCHAR" property="alarm" />
+        <result column="voltage" jdbcType="VARCHAR" property="voltage" />
+        <result column="electricity" jdbcType="VARCHAR" property="electricity" />
+        <result column="savetime" jdbcType="TIMESTAMP" property="savetime" />
+        <result column="carname" jdbcType="VARCHAR" property="carname" />
+        <result column="status" jdbcType="INTEGER" property="status" />
+
+    </resultMap>
+    <!--车载卡历史记录-->
+    <insert id="insert" parameterType="com.jib.wwyt.model.CzkLsjl">
+      insert into czk_lsjl(devicenum,sendtime,xcross,ycross,velocity,direction,horizontalfactor,alarm,voltage,electricity,savetime,carname,status)
+      values(#{devicenum},#{sendtime},#{xCross},#{yCross},#{velocity},#{direction},#{horizontalfactor},#{alarm},#{voltage},#{electricity},getdate(),#{carname},#{status})
+    </insert>
+
+
+    <!--查询历史记录-->
+    <select id="findhistorybytime" resultType="java.util.Map" parameterType="map">
+        SELECT b.xCross,b.yCross FROM   czk_card a left  join czk_lsjl  b   on a.devicenum =b.devicenum  where 1=1 and a.companynum='${companynum}'
+        and b.savetime>='${starttime}' and b.status=0
+        <if test="endtime != null">
+           and  b.savetime  &lt;='${endtime}'
+        </if>
+        <if test="devicenum != null">
+            and  b.devicenum  ='${devicenum}'
+        </if>
+        order by b.id
+    </select>
+
+
+
+
+    <!--查询历史记录-->
+    <select id="findbydevicenumnewest" resultType="java.util.Map" parameterType="map">
+       select top 1 xCross,yCross from  czk_lsjl where devicenum='${devicenum}' order by id desc
+    </select>
+
+
+
+</mapper>

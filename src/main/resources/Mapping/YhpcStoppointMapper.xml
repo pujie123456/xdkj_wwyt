@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jib.wwyt.mapper.YhpcStoppointMapper">
+  <!--<resultMap id="BaseResultMap" type="com.jib.wwyt.model.YhpcStoppoint">-->
+    <!--<id column="id" jdbcType="BIGINT" property="id" />-->
+    <!--<result column="id1" jdbcType="BIGINT" property="id1" />-->
+    <!--<result column="type" jdbcType="VARCHAR" property="type" />-->
+    <!--<result column="enddate" jdbcType="TIMESTAMP" property="enddate" />-->
+    <!--<result column="startdate" jdbcType="TIMESTAMP" property="startdate" />-->
+  <!--</resultMap>-->
+  <!--<sql id="Base_Column_List">-->
+    <!--id, id1, type, enddate, startdate-->
+  <!--</sql>-->
+  <!--<select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">-->
+    <!--select -->
+    <!--<include refid="Base_Column_List" />-->
+    <!--from yhpc_stoppoint-->
+    <!--where id = #{id,jdbcType=BIGINT}-->
+  <!--</select>-->
+  <!--<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">-->
+    <!--delete from yhpc_stoppoint-->
+    <!--where id = #{id,jdbcType=BIGINT}-->
+  <!--</delete>-->
+
+    <!--<insert id="insert" parameterType="com.jib.wwyt.model.YhpcStoppoint">-->
+    <!--insert into yhpc_stoppoint (id, id1, type, -->
+      <!--enddate, startdate)-->
+    <!--values (#{id,jdbcType=BIGINT}, #{id1,jdbcType=BIGINT}, #{type,jdbcType=VARCHAR}, -->
+      <!--#{enddate,jdbcType=TIMESTAMP}, #{startdate,jdbcType=TIMESTAMP})-->
+  <!--</insert>-->
+  <!--<insert id="insertSelective" parameterType="com.jib.wwyt.model.YhpcStoppoint">-->
+    <!--insert into yhpc_stoppoint-->
+    <!--<trim prefix="(" suffix=")" suffixOverrides=",">-->
+      <!--<if test="id != null">-->
+        <!--id,-->
+      <!--</if>-->
+      <!--<if test="id1 != null">-->
+        <!--id1,-->
+      <!--</if>-->
+      <!--<if test="type != null">-->
+        <!--type,-->
+      <!--</if>-->
+      <!--<if test="enddate != null">-->
+        <!--enddate,-->
+      <!--</if>-->
+      <!--<if test="startdate != null">-->
+        <!--startdate,-->
+      <!--</if>-->
+    <!--</trim>-->
+    <!--<trim prefix="values (" suffix=")" suffixOverrides=",">-->
+      <!--<if test="id != null">-->
+        <!--#{id,jdbcType=BIGINT},-->
+      <!--</if>-->
+      <!--<if test="id1 != null">-->
+        <!--#{id1,jdbcType=BIGINT},-->
+      <!--</if>-->
+      <!--<if test="type != null">-->
+        <!--#{type,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="enddate != null">-->
+        <!--#{enddate,jdbcType=TIMESTAMP},-->
+      <!--</if>-->
+      <!--<if test="startdate != null">-->
+        <!--#{startdate,jdbcType=TIMESTAMP},-->
+      <!--</if>-->
+    <!--</trim>-->
+  <!--</insert>-->
+  <!--<update id="updateByPrimaryKeySelective" parameterType="com.jib.wwyt.model.YhpcStoppoint">-->
+    <!--update yhpc_stoppoint-->
+    <!--<set>-->
+      <!--<if test="id1 != null">-->
+        <!--id1 = #{id1,jdbcType=BIGINT},-->
+      <!--</if>-->
+      <!--<if test="type != null">-->
+        <!--type = #{type,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="enddate != null">-->
+        <!--enddate = #{enddate,jdbcType=TIMESTAMP},-->
+      <!--</if>-->
+      <!--<if test="startdate != null">-->
+        <!--startdate = #{startdate,jdbcType=TIMESTAMP},-->
+      <!--</if>-->
+    <!--</set>-->
+    <!--where id = #{id,jdbcType=BIGINT}-->
+  <!--</update>-->
+  <!--<update id="updateByPrimaryKey" parameterType="com.jib.wwyt.model.YhpcStoppoint">-->
+    <!--update yhpc_stoppoint-->
+    <!--set id1 = #{id1,jdbcType=BIGINT},-->
+      <!--type = #{type,jdbcType=VARCHAR},-->
+      <!--enddate = #{enddate,jdbcType=TIMESTAMP},-->
+      <!--startdate = #{startdate,jdbcType=TIMESTAMP}-->
+    <!--where id = #{id,jdbcType=BIGINT}-->
+  <!--</update>-->
+
+
+  <!--<delete id="deleteStaleData">-->
+    <!--DELETE FROM yhpc_stoppoint WHERE enddate &lt; convert(varchar(10),dateadd(d,1,Getdate()),120)-->
+  <!--</delete>-->
+
+
+  <!--<insert id="insertSelective3" parameterType="map" useGeneratedKeys="true" keyProperty="id">-->
+    <!--insert into yhpc_dailyhiddencheck (s1, s2,-->
+      <!--s3, m1, m10, m11,-->
+      <!--m12, m13, m14, m15,-->
+      <!--m16, m17, m18, m2,-->
+      <!--m3, m4, m5, m6,-->
+      <!--m7, m8, m9, qyid,-->
+      <!--m19, m20, m6_1, m6_2,-->
+      <!--shstate)-->
+    <!--values (#{s1,jdbcType=TIMESTAMP}, #{s2,jdbcType=TIMESTAMP},-->
+      <!--#{s3,jdbcType=INTEGER}, #{m1,jdbcType=TIMESTAMP}, #{m10,jdbcType=TIMESTAMP}, #{m11,jdbcType=TIMESTAMP},-->
+      <!--#{m12,jdbcType=VARCHAR}, #{m13,jdbcType=VARCHAR}, #{m14,jdbcType=VARCHAR}, #{m15,jdbcType=VARCHAR},-->
+      <!--#{m16,jdbcType=VARCHAR}, #{m17,jdbcType=VARCHAR}, #{m18,jdbcType=VARCHAR}, #{m2,jdbcType=VARCHAR},-->
+      <!--#{m3,jdbcType=VARCHAR}, #{m4,jdbcType=VARCHAR}, #{m5,jdbcType=VARCHAR}, #{m6,jdbcType=VARCHAR},-->
+      <!--#{m7,jdbcType=VARCHAR}, #{m8,jdbcType=VARCHAR}, #{m9,jdbcType=VARCHAR}, #{qyid,jdbcType=BIGINT},-->
+      <!--#{m19,jdbcType=VARCHAR}, #{m20,jdbcType=VARCHAR}, #{m6_1,jdbcType=VARCHAR}, #{m6_2,jdbcType=VARCHAR},-->
+      <!--#{shstate,jdbcType=VARCHAR})-->
+  <!--</insert>-->
+
+
+</mapper>

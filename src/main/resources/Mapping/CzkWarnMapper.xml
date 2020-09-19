@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jib.wwyt.mapper.CzkWarnMapper">
+    <resultMap id="BaseResultMap" type="com.jib.wwyt.model.CzkWarn">
+        <result column="id" jdbcType="INTEGER" property="id" />
+        <result column="warntype" jdbcType="VARCHAR" property="warntype" />
+        <result column="warntime" jdbcType="TIMESTAMP" property="warntime" />
+        <result column="devicenum" jdbcType="VARCHAR" property="devicenum" />
+        <result column="warnspeed" jdbcType="VARCHAR" property="warnspeed" />
+        <result column="warncarname" jdbcType="VARCHAR" property="warncarname" />
+        <result column="warnspeedlimit" jdbcType="INTEGER" property="warnspeedlimit" />
+        <result column="warnxcross" jdbcType="VARCHAR" property="warnxcross" />
+        <result column="warnxyross" jdbcType="VARCHAR" property="warnycross" />
+    </resultMap>
+    <!--车载卡报警记录-->
+    <insert id="insert" parameterType="com.jib.wwyt.model.CzkWarn">
+      insert into czk_warn(warntype,warntime,devicenum,warnspeed,warncarname,warnspeedlimit,warnxcross,warnycross)
+      values(#{warntype},getdate(),#{devicenum},#{warnspeed},#{warncarname},#{warnspeedlimit},#{warnxcross},#{warnycross})
+    </insert>
+
+
+    <!--公司车载卡报警查询-->
+    <select id="findbycompany" resultType="java.util.Map" parameterType="map">
+        select a.* from czk_warn a left join czk_card b  on a.devicenum=b.devicenum where a.id in (select max(id)  id from czk_warn group by devicenum) and a.warntype = '超速报警'  and datediff(mi,a.warntime,getdate())&lt;10
+        <if test="companynum != null">
+          and b.companynum='${companynum}'
+        </if>
+        <if test="devicenum != null">
+          and b.devicenum='${devicenum}'
+        </if>
+    </select>
+
+
+</mapper>

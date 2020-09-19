@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jib.wwyt.mapper.CzkCardMapper">
+    <resultMap id="BaseResultMap" type="com.jib.wwyt.model.CzkCard">
+        <result column="id" jdbcType="INTEGER" property="id" />
+        <result column="devicenum" jdbcType="VARCHAR" property="devicenum" />
+        <result column="companynum" jdbcType="VARCHAR" property="companynum" />
+        <result column="phonenum" jdbcType="VARCHAR" property="phonenum" />
+        <result column="carname" jdbcType="VARCHAR" property="carname" />
+        <result column="speedlimit" jdbcType="INTEGER" property="speedlimit" />
+    </resultMap>
+    <insert id="insert" parameterType="com.jib.wwyt.model.CzkCard">
+      insert into czk_card(devicenum,companynum,phonenum,carname,speedlimit) values(#{devicenum},#{companynum},#{phonenum},#{carname},#{speedlimit})
+    </insert>
+    <!--根据企业编码查找车载卡实体类-->
+    <select id="selectbydevicenum" resultType="com.jib.wwyt.model.CzkCard" parameterType="map">
+      select * from czk_card where
+      1=1
+        <if test="companynum != null">
+            and  companynum=#{companynum}
+        </if>
+        <if test="devicenum != null">
+            and  devicenum=#{devicenum}
+        </if>
+    </select>
+
+    <!--根据企业编码查找车载卡实体类列表-->
+    <select id="findcardbycompanynum" resultType="java.util.Map" parameterType="map">
+        select devicenum,carname from czk_card where
+        1=1
+        <if test="companynum != null">
+            and  companynum=#{companynum}
+        </if>
+        <if test="devicenum != null">
+            and  devicenum=#{devicenum}
+        </if>
+    </select>
+
+
+    <!--根据企业编码查找车载卡实体类列表-->
+    <select id="findallcardlist" resultType="java.util.Map" parameterType="map">
+        select * from czk_card where
+        1=1
+        <if test="companynum != null">
+            and  companynum='${companynum}'
+        </if>
+        <if test="devicenum != null">
+            and  devicenum='${devicenum}'
+        </if>
+    </select>
+
+
+    <!--修改车辆卡-->
+    <update id="updatecard" parameterType="map">
+        update czk_card set
+        carname='${carname}'
+
+        <if test="devicenum != null">
+           ,phonenum='${phonenum}'
+        </if>
+        <if test="speedlimit != null">
+            ,speedlimit='${speedlimit}'
+        </if>
+        where devicenum=${devicenum}
+
+
+
+    </update>
+
+
+
+
+</mapper>

@@ -1,0 +1,39 @@
+server:
+  servlet:
+    context-path: /
+  port: 8080
+env: prod
+spring:
+  # 配置缓存注解
+  cache:
+    type: redis
+    cache-names: redisCache
+  # 缓存配置
+  redis:
+    # 配置redis连接池
+    jedis:
+      pool:
+        min-idle: 0
+        max-active: 10
+        max-idle: 10
+        max-wait: 2000
+    # 配置redis服务器属性
+    port: 6379
+    password: jibin110110##
+    host: 106.12.91.177
+    timeout: 3000
+  # 数据库配置
+  datasource:
+    url: jdbc:mysql://106.12.91.177:3306/spring_boot_demo?useUnicode=true&characterEncoding=UTF-8&rewriteBatchedStatements=true&zeroDateTimeBehavior=convertToNull
+    username: root
+    password: jibin110110##
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    tomcat:
+      # 连接最大活跃数
+      max-active: 50
+      # 连接最大等待数
+      max-idle: 10
+      # 获取连接等待时长，单位ms
+      max-wait: 10000
+      # 连接池初始化连接数
+      initial-size: 5
